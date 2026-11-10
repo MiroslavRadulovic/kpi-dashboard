@@ -1,0 +1,16 @@
+<button
+  type="button"
+  class="option"
+  [class.selected]="selected()"
+  [attr.aria-pressed]="selected()"
+  [disabled]="disabled()"
+  [title]="disabled() ? disabledReason() : ''"
+  (click)="toggled.emit(kpi().id)"
+>
+  <span class="text">
+    <span class="name">
+      {{ kpi().name }} <span class="unit">({{ kpi().unit }})</span>
+    </span>
+    <span class="description">{{ kpi().description }}</span>
+  </span>
+</button>

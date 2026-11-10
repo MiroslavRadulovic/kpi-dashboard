@@ -1,0 +1,20 @@
+<nav class="sidebar" aria-label="Main">
+  @for (item of navItems; track item.label) {
+    <a
+      class="nav-item"
+      [routerLink]="item.route"
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{ exact: item.exact ?? false }"
+      [class.disabled]="item.disabled ?? false"
+      [attr.aria-disabled]="item.disabled ? true : null"
+      [attr.tabindex]="item.disabled ? -1 : null"
+      [attr.title]="item.disabled ? dashboardDisabledHint : null"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path [attr.d]="item.iconPath" />
+      </svg>
+
+      {{ item.label }}
+    </a>
+  }
+</nav>

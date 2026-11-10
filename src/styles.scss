@@ -1,1 +1,83 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'assets/styles/colors.scss' as *;
+@use 'assets/styles/variables.scss' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  font-family:
+    'Helvetica Neue',
+    Arial,
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 15px;
+  color: $text;
+  background: $background;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 24px;
+  border: 1px solid transparent;
+  border-radius: $radius-pill;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.btn-primary {
+  background: $primary;
+  color: $surface;
+
+  &:hover:not(:disabled) {
+    background: $primary-hover;
+  }
+
+  &:disabled {
+    background: $disabled-bg;
+    color: $disabled-text;
+  }
+}
+
+.btn-secondary {
+  background: $surface;
+  border-color: $primary;
+  color: $primary;
+
+  &:hover:not(:disabled) {
+    background: $primary-soft;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

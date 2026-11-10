@@ -1,0 +1,25 @@
+@use '../../../../assets/styles/colors.scss' as *;
+@use '../../../../assets/styles/mixins.scss' as *;
+
+@include alertInfoHost;
+
+.icon {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: $text-muted;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.empty {
+  stroke: $primary;
+}
+
+.error {
+  stroke: $danger;
+}
+
+.btn {
+  margin-top: 8px;
+}

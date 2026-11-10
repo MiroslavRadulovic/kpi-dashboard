@@ -1,4 +1,5 @@
 export type NetworkType = '3G' | '4G' | '5G';
+export type LoadStatus = 'idle' | 'loading' | 'loaded' | 'error';
 
 export type KpiId =
   | 'averageSignalStrength'

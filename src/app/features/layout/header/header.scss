@@ -1,0 +1,35 @@
+@use '../../../../assets/styles/colors.scss' as *;
+@use '../../../../assets/styles/variables.scss' as *;
+
+.topbar {
+  display: flex;
+  align-items: center;
+  height: 64px;
+  padding: 0 20px;
+  background: $surface;
+  border-bottom: 1px solid $border-subtle;
+  flex-shrink: 0;
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.3rem;
+    color: $text;
+    text-decoration: none;
+
+    .brand-icon {
+      width: 26px;
+      height: 26px;
+      fill: none;
+      stroke: $primary;
+      stroke-width: 2;
+      stroke-linecap: round;
+
+      circle {
+        fill: $primary;
+        stroke: none;
+      }
+    }
+  }
+}
