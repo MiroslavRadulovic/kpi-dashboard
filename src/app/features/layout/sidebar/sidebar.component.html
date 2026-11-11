@@ -1,5 +1,5 @@
 <nav class="sidebar" aria-label="Main">
-  @for (item of navItems(); track item.label) {
+  @for (item of navItems(); track item.id) {
     <a
       class="nav-item"
       [routerLink]="item.disabled ? null : item.route"

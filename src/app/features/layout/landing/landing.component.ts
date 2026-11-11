@@ -10,4 +10,4 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
   styleUrl: './landing.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Landing {}
+export class LandingComponent {}

@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
 import { hasKpiSelectionGuard } from '@core/guards/dashboard.guard';
-import { Landing } from '@features/layout/landing/landing.component';
+import { LandingComponent } from '@features/layout/landing/landing.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: Landing,
+    component: LandingComponent,
     children: [
       {
         path: '',
