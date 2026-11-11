@@ -1,1 +1,78 @@
-<p>kpi-selection works!</p>
+<div class="page">
+  <h1>Let's tailor your perfect dashboard!</h1>
+
+  <div class="name-field" [class.invalid]="showNameError()">
+    <label for="dashboard-name">
+      Dashboard name
+
+      @if (submitAttempted()) {
+        <span class="required-mark" aria-hidden="true">•</span>
+      }
+    </label>
+
+    <input
+      #nameInput
+      id="dashboard-name"
+      type="text"
+      placeholder="Enter dashboard name"
+      maxlength="60"
+      required
+      [value]="dashboardName()"
+      [attr.aria-invalid]="showNameError()"
+      [attr.aria-describedby]="showNameError() ? 'dashboard-name-error' : null"
+      (input)="onNameInput($event)"
+    />
+
+    @if (showNameError()) {
+      <p id="dashboard-name-error" class="field-error" role="alert">Dashboard name is required</p>
+    }
+  </div>
+
+  <p class="intro">
+    Select {{ minKpis }} to {{ maxKpis }} KPIs you want to show on your dashboard.
+  </p>
+
+  <section class="panel" aria-labelledby="kpi-heading">
+    <div class="panel-header">
+      <h2 id="kpi-heading">Network KPIs</h2>
+
+      @if (!isLoading() && !hasError()) {
+        <span class="counter" aria-live="polite">
+          {{ selectedIds().length }} / {{ maxKpis }} selected
+        </span>
+      }
+    </div>
+
+    @if (isLoading()) {
+      <app-loader message="Loading KPIs…" />
+    } @else if (hasError()) {
+      <app-alert-info
+        [isError]="true"
+        title="Could not load KPIs"
+        [message]="error()"
+        (retry)="onRetry()"
+      />
+    } @else {
+      <div class="options">
+        @for (option of options(); track option.kpi.id) {
+          <app-kpi-option
+            [kpi]="option.kpi"
+            [selected]="option.selected"
+            [disabled]="option.disabled"
+            [disabledReason]="limitReason"
+            (toggled)="onToggle($event)"
+          />
+        }
+      </div>
+      <p class="selection-hint" [class.warning]="limitReached()" aria-live="polite">
+        {{ selectionHint() }}
+      </p>
+    }
+  </section>
+</div>
+
+<footer class="action-bar">
+  <button type="button" class="btn btn-primary" [disabled]="!canCreate()" (click)="onCreate()">
+    Create dashboard
+  </button>
+</footer>

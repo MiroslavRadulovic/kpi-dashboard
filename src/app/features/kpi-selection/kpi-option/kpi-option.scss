@@ -1,0 +1,64 @@
+@use '../../../../assets/styles/colors.scss' as *;
+@use '../../../../assets/styles/variables.scss' as *;
+
+:host {
+  display: block;
+}
+
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  padding: 14px 16px;
+  text-align: left;
+  color: $text;
+  background: $surface;
+  border: 1px solid $border;
+  border-radius: $radius;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+
+  &:hover:not(:disabled) {
+    border-color: $primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+
+  &.selected {
+    border-color: $primary;
+    box-shadow: inset 0 0 0 1px $primary;
+    background: $primary-soft;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    .name {
+      font-weight: 600;
+
+      .unit {
+        font-weight: 400;
+        color: $text-muted;
+      }
+    }
+
+    .description {
+      font-size: 0.875rem;
+      color: $text-muted;
+    }
+  }
+}

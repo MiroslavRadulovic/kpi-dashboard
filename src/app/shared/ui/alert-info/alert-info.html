@@ -1,0 +1,20 @@
+@if (isError()) {
+  <svg class="icon error" viewBox="0 0 24 24" aria-hidden="true">
+    <circle cx="12" cy="12" r="9" />
+    <path d="M12 7v6M12 16.5v.5" />
+  </svg>
+} @else {
+  <svg class="icon empty" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M3 7h18v13H3zM3 7l3-4h12l3 4M9 12h6" />
+  </svg>
+}
+
+<p class="title">{{ title() }}</p>
+
+@if (message()) {
+  <p class="hint">{{ message() }}</p>
+}
+
+@if (isError()) {
+  <button type="button" class="btn btn-secondary" (click)="retry.emit()">Retry</button>
+}

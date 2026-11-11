@@ -1,0 +1,19 @@
+@use '../../../../assets/styles/colors.scss' as *;
+@use '../../../../assets/styles/mixins.scss' as *;
+
+@include alertInfoHost;
+
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 3px solid $border-subtle;
+  border-top-color: $primary;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

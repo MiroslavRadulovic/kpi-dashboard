@@ -42,3 +42,11 @@ export const HOURS_PER_RANGE: Record<MeasurementFilters['range'], number> = {
 export const PEAK_START_HOUR_UTC = 18;
 export const PEAK_END_HOUR_UTC = 22;
 export const PEAK_PENALTY = 0.3;
+
+export const KPI_SELECTION_MESSAGES = {
+  LIMIT_REACHED: (max: number) =>
+    `You can compare up to ${max} KPIs. Deselect one to choose another.`,
+  MIN_REQUIRED: (min: number) => `Select at least ${min} KPIs to create a dashboard.`,
+  READY: 'Ready to create your dashboard.',
+  LIMIT_REASON: (max: number) => `Limit of ${max} KPIs reached`,
+} as const;
