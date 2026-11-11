@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
-import { Landing } from '@features/layout/landing/landing';
+import { hasKpiSelectionGuard } from '@core/guards/dashboard.guard';
+import { LandingComponent } from '@features/layout/landing/landing.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: Landing,
+    component: LandingComponent,
     children: [
       {
         path: '',
@@ -15,7 +16,16 @@ export const routes: Routes = [
         path: 'kpi-selection',
         title: 'Select KPIs',
         loadComponent: () =>
-          import('@features/kpi-selection/kpi-selection').then((m) => m.KpiSelection),
+          import('@features/kpi-selection/kpi-selection.component').then(
+            (m) => m.KpiSelectionComponent,
+          ),
+      },
+      {
+        path: 'dashboard',
+        title: 'Dashboard',
+        canActivate: [hasKpiSelectionGuard],
+        loadComponent: () =>
+          import('@features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
       },
     ],
   },

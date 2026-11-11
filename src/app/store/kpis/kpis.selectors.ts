@@ -1,11 +1,11 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { KpisState } from './kpis-store.model';
-import { kpisKey } from './kpis.reducer';
+import { KPIS_KEY } from './kpis.reducer';
 import { LoadStatus } from '@core/enums/kpis.enum';
 import { KpiDefinition, KpiId } from '@core/models/kpi.models';
 import { MAX_SELECTED_KPIS, MIN_SELECTED_KPIS } from '@core/constants/kpis.const';
 
-export const selectKpisState = createFeatureSelector<KpisState>(kpisKey);
+export const selectKpisState = createFeatureSelector<KpisState>(KPIS_KEY);
 
 export const selectDefinitions = createSelector(
   selectKpisState,
@@ -48,4 +48,9 @@ export const selectSelectionLimitReached = createSelector(
 export const selectCanCreateDashboard = createSelector(
   selectSelectedIds,
   (kpiIds: KpiId[]) => kpiIds.length >= MIN_SELECTED_KPIS,
+);
+export const selectCanOpenDashboard = createSelector(
+  selectCanCreateDashboard,
+  selectHasDashboardName,
+  (validSelection: boolean, hasName: boolean) => validSelection && hasName,
 );

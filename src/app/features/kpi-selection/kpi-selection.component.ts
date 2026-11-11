@@ -26,19 +26,19 @@ import {
   selectSelectedIds,
   selectSelectionLimitReached,
 } from '@store/kpis/kpis.selectors';
-import { Loader } from '@shared/ui/loader/loader';
-import { AlertInfo } from '@shared/ui/alert-info/alert-info';
-import { KpiOption } from './kpi-option/kpi-option';
+import { LoaderComponent } from '@shared/ui/loader/loader.component';
+import { AlertInfoComponent } from '@shared/ui/alert-info/alert-info.component';
+import { KpiOptionComponent } from './kpi-option/kpi-option.component';
 import { KpiId } from '@core/models/kpi.models';
 
 @Component({
   selector: 'app-kpi-selection',
-  imports: [Loader, AlertInfo, KpiOption],
-  templateUrl: './kpi-selection.html',
-  styleUrl: './kpi-selection.scss',
+  imports: [LoaderComponent, AlertInfoComponent, KpiOptionComponent],
+  templateUrl: './kpi-selection.component.html',
+  styleUrl: './kpi-selection.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class KpiSelection implements OnInit {
+export class KpiSelectionComponent implements OnInit {
   private readonly store = inject(Store);
 
   private readonly nameInput = viewChild.required<ElementRef<HTMLInputElement>>('nameInput');
@@ -70,16 +70,16 @@ export class KpiSelection implements OnInit {
   protected readonly options = computed(() => {
     const selectedIds = this.selectedIds();
     const limitReached = this.limitReached();
-    
+
     return this.kpis().map((kpi) => {
       const selected = selectedIds.includes(kpi.id);
-      
+
       return { kpi, selected, disabled: limitReached && !selected };
     });
   });
 
   protected readonly submitAttempted = signal(false);
-  
+
   protected readonly limitReason = KPI_SELECTION_MESSAGES.LIMIT_REASON(MAX_SELECTED_KPIS);
   protected readonly minKpis = MIN_SELECTED_KPIS;
   protected readonly maxKpis = MAX_SELECTED_KPIS;
@@ -111,6 +111,6 @@ export class KpiSelection implements OnInit {
       return;
     }
 
-    // TODO: Dispatch action for the dashboard creation.
+    this.store.dispatch(KpisActions.createDashboardClicked());
   }
 }

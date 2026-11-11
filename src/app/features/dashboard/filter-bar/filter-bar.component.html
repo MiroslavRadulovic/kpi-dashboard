@@ -1,0 +1,41 @@
+<div class="filter" role="group" aria-labelledby="range-label">
+  <span id="range-label" class="label">Time range</span>
+
+  <div class="segmented">
+    @for (range of ranges; track range.value) {
+      <button
+        type="button"
+        [class.active]="filters().range === range.value"
+        [attr.aria-pressed]="filters().range === range.value"
+        [disabled]="disabled()"
+        (click)="set('range', range.value)"
+      >
+        {{ range.label }}
+      </button>
+    }
+  </div>
+</div>
+
+<div class="filter">
+  <label class="label" for="network-type">Network type</label>
+
+  <select id="network-type" [disabled]="disabled()" (change)="set('type', selectValue($event))">
+    <option value="all" [selected]="filters().type === 'all'">All</option>
+
+    @for (type of networkTypes; track type) {
+      <option [value]="type" [selected]="filters().type === type">{{ type }}</option>
+    }
+  </select>
+</div>
+
+<div class="filter">
+  <label class="label" for="region">Region</label>
+
+  <select id="region" [disabled]="disabled()" (change)="set('region', selectValue($event))">
+    <option value="all" [selected]="filters().region === 'all'">All</option>
+
+    @for (region of regions; track region) {
+      <option [value]="region" [selected]="filters().region === region">{{ region }}</option>
+    }
+  </select>
+</div>

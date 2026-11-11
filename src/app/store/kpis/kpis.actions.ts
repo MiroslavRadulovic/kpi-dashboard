@@ -19,3 +19,4 @@ export const kpisLoadedFailure = createAction(
   '[KPIs API] Kpis Loaded Failure',
   props<{ error: string }>(),
 );
+export const createDashboardClicked = createAction('[KPI Selection Page] Create Dashboard Clicked');

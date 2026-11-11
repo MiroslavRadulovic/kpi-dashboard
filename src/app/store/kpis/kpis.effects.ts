@@ -1,11 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { concatLatestFrom } from '@ngrx/operators';
+import { Router } from '@angular/router';
+import { catchError, exhaustMap, filter, map, of, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { KpiApiService } from '@core/api/kpi-api.service';
 import * as KpisActions from './kpis.actions';
 import { selectKpisStatus } from './kpis.selectors';
-import { catchError, exhaustMap, filter, map, of } from 'rxjs';
 import { LoadStatus } from '@core/enums/kpis.enum';
 import { KpiDefinition } from '@core/models/kpi.models';
 import { toErrorMessage } from '@store/load-status';
@@ -15,6 +16,7 @@ export class KpisEffects {
   private readonly actions$ = inject(Actions);
   private readonly store = inject(Store);
   private readonly kpiApi = inject(KpiApiService);
+  private readonly router = inject(Router);
 
   loadKpis$ = createEffect(() => {
     return this.actions$.pipe(
@@ -31,4 +33,14 @@ export class KpisEffects {
       ),
     );
   });
+
+  navigateToDashboard$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(KpisActions.createDashboardClicked),
+        tap(() => void this.router.navigateByUrl('/dashboard')),
+      );
+    },
+    { dispatch: false },
+  );
 }

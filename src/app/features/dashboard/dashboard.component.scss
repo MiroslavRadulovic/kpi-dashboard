@@ -1,0 +1,30 @@
+@use '../../../assets/styles/colors.scss' as *;
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+
+  .page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+
+    h1 {
+      font-size: 1.6rem;
+    }
+
+    .btn {
+      text-decoration: none;
+    }
+
+    .subtitle {
+      margin: 6px 0 0;
+      color: $text-muted;
+    }
+  }
+}

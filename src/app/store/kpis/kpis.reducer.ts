@@ -3,8 +3,9 @@ import { KpisState } from './kpis-store.model';
 import { LoadStatus } from '@core/enums/kpis.enum';
 import * as KpisActions from './kpis.actions';
 import { MAX_SELECTED_KPIS } from '@core/constants/kpis.const';
+import { SidebarItems } from '@core/enums/sidebar-items.enum';
 
-export const kpisKey = 'kpis';
+export const KPIS_KEY = SidebarItems.KPIS;
 
 export const initialState: KpisState = {
   definitions: [],

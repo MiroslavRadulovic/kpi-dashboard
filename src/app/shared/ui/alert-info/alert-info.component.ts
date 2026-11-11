@@ -3,11 +3,11 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 @Component({
   selector: 'app-alert-info',
   imports: [],
-  templateUrl: './alert-info.html',
-  styleUrl: './alert-info.scss',
+  templateUrl: './alert-info.component.html',
+  styleUrl: './alert-info.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AlertInfo {
+export class AlertInfoComponent {
   readonly title = input('Something went wrong');
   readonly message = input<string | null>(null);
   readonly isError = input<boolean>(false);
