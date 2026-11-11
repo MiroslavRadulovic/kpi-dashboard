@@ -1,0 +1,15 @@
+<div class="page">
+  <header class="page-header">
+    <div>
+      <h1>{{ title() }}</h1>
+      <p class="subtitle">
+        @for (kpi of kpis(); track kpi.id; let last = $last) {
+          {{ kpi.name }}{{ last ? '' : ' · ' }}
+        }
+      </p>
+    </div>
+    <a class="btn btn-secondary" routerLink="/">Edit KPIs</a>
+  </header>
+
+  <app-filter-bar [filters]="filters()" (filtersChange)="onFiltersChange($event)" />
+</div>

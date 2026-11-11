@@ -4,11 +4,11 @@ import { KpiDefinition } from '@core/models/kpi.models';
 @Component({
   selector: 'app-kpi-option',
   imports: [],
-  templateUrl: './kpi-option.html',
-  styleUrl: './kpi-option.scss',
+  templateUrl: './kpi-option.component.html',
+  styleUrl: './kpi-option.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class KpiOption {
+export class KpiOptionComponent {
   readonly kpi = input.required<KpiDefinition>();
   readonly selected = input(false);
   readonly disabled = input(false);
