@@ -14,4 +14,64 @@
   </header>
 
   <app-filter-bar [filters]="filters()" (filtersChange)="onFiltersChange($event)" />
+
+  <ng-template #dataState>
+    @if (isLoading()) {
+      <app-loader message="Loading measurements…" />
+    } @else if (hasError()) {
+      <app-alert-info
+        [isError]="true"
+        title="Could not load measurements"
+        [message]="error()"
+        (retry)="onRetry()"
+      />
+    } @else {
+      <app-alert-info
+        title="No data for these filters"
+        hint="Try a longer time range or another network type or region."
+      />
+    }
+  </ng-template>
+
+  <section class="card" aria-labelledby="charts-heading">
+    <h2 id="charts-heading">Overview</h2>
+
+    @if (isLoading() || hasError() || isEmpty()) {
+      <ng-container [ngTemplateOutlet]="dataState" />
+    } @else {
+      <app-kpi-number-cards [cards]="summaries()" />
+
+      <div class="switcher-row">
+        <span class="switcher-label">Show in charts:</span>
+
+        <app-kpi-switcher
+          [kpis]="kpis()"
+          [activeId]="activeKpiId()"
+          (activeIdChange)="activeKpiId.set($event)"
+        />
+      </div>
+
+      @if (activeKpi(); as kpi) {
+        <div class="chart-grid">
+          <figure class="chart wide">
+            <figcaption>{{ kpi.name }} over time</figcaption>
+
+            <app-kpi-trend-chart [data]="trendData()" [kpi]="kpi" [range]="filters().range" />
+          </figure>
+
+          <figure class="chart">
+            <figcaption>{{ kpi.name }} by region</figcaption>
+
+            <app-kpi-region-chart [data]="regionData()" [kpi]="kpi" />
+          </figure>
+
+          <figure class="chart">
+            <figcaption>{{ kpi.name }} quality</figcaption>
+
+            <app-kpi-quality-chart [data]="qualityData()" />
+          </figure>
+        </div>
+      }
+    }
+  </section>
 </div>

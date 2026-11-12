@@ -9,6 +9,7 @@ import { ChangeDetectionStrategy, Component, input, output } from '@angular/core
 })
 export class AlertInfoComponent {
   readonly title = input('Something went wrong');
+  readonly hint = input('');
   readonly message = input<string | null>(null);
   readonly isError = input<boolean>(false);
   readonly retry = output();

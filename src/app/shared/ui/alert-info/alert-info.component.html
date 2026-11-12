@@ -11,6 +11,10 @@
 
 <p class="title">{{ title() }}</p>
 
+@if (hint()) {
+  <p class="hint">{{ hint() }}</p>
+}
+
 @if (message()) {
   <p class="hint">{{ message() }}</p>
 }

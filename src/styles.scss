@@ -18,7 +18,6 @@ body {
     sans-serif;
   font-size: 15px;
   color: $text;
-  background: $background;
 }
 
 h1,
@@ -53,10 +52,6 @@ select {
   background: $primary;
   color: $surface;
 
-  &:hover:not(:disabled) {
-    background: $primary-hover;
-  }
-
   &:disabled {
     background: $disabled-bg;
     color: $disabled-text;
@@ -69,7 +64,9 @@ select {
   color: $primary;
 
   &:hover:not(:disabled) {
-    background: $primary-soft;
+    background: $primary;
+    color: $surface;
+    transition: all 0.3s;
   }
 }
 

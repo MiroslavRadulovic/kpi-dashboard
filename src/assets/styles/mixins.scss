@@ -1,4 +1,5 @@
 @use './colors.scss' as *;
+@use './variables.scss' as *;
 
 @mixin alertInfoHost {
   :host {
@@ -24,5 +25,84 @@
 
   .hint {
     font-size: 0.9rem;
+  }
+}
+
+@mixin segmented {
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  max-width: 100%;
+  padding: $seg-pad;
+  border: 1px solid $border;
+  border-radius: $radius-pill;
+  background: $surface;
+
+  .indicator {
+    position: absolute;
+    top: $seg-pad;
+    bottom: $seg-pad;
+    left: $seg-pad;
+    width: calc((100% - 2 * $seg-pad) / var(--seg-count, 1));
+    border-radius: $radius-pill;
+    background: $primary;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
+    transform: translateX(calc(var(--seg-index, 0) * 100%));
+    transition:
+      transform 300ms $seg-ease,
+      opacity 200ms ease;
+  }
+
+  &.no-selection .indicator {
+    opacity: 0;
+  }
+
+  button {
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    height: 36px;
+    padding: 0 24px;
+    border: none;
+    border-radius: $radius-pill;
+    background: transparent;
+    color: $primary;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition:
+      color 300ms $seg-ease,
+      background-color 150ms ease;
+
+    &:focus-visible {
+      outline: 2px solid $primary;
+      outline-offset: 2px;
+    }
+
+    &.active {
+      color: $surface;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  @media (max-width: 600px) {
+    button {
+      padding: 0 12px;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .indicator,
+    button {
+      transition: none;
+    }
   }
 }
