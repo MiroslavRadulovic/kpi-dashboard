@@ -1,7 +1,14 @@
 <div class="filter" role="group" aria-labelledby="range-label">
   <span id="range-label" class="label">Time range</span>
 
-  <div class="segmented">
+  <div
+    class="segmented"
+    [style.--seg-count]="ranges.length"
+    [style.--seg-index]="activeRangeIndex()"
+    [class.no-selection]="activeRangeIndex() < 0"
+  >
+    <span class="indicator" aria-hidden="true"></span>
+
     @for (range of ranges; track range.value) {
       <button
         type="button"

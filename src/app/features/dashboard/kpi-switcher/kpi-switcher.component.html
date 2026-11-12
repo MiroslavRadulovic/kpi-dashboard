@@ -1,0 +1,14 @@
+<span class="indicator" aria-hidden="true"></span>
+
+@for (kpi of kpis(); track kpi.id) {
+  <button
+    type="button"
+    role="tab"
+    [class.active]="kpi.id === activeId()"
+    [attr.aria-selected]="kpi.id === activeId()"
+    [title]="kpi.name"
+    (click)="activeIdChange.emit(kpi.id)"
+  >
+    {{ kpi.name }}
+  </button>
+}

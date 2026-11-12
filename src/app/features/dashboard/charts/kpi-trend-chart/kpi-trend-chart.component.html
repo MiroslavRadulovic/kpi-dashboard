@@ -1,0 +1,14 @@
+<ngx-charts-line-chart
+  [results]="data()"
+  [scheme]="scheme"
+  [xAxis]="true"
+  [yAxis]="true"
+  [legend]="true"
+  legendTitle="Network"
+  [showXAxisLabel]="false"
+  [showYAxisLabel]="true"
+  [yAxisLabel]="kpi().unit"
+  [autoScale]="true"
+  [roundDomains]="true"
+  [xAxisTickFormatting]="range() === '24h' ? formatHour : formatDay"
+/>

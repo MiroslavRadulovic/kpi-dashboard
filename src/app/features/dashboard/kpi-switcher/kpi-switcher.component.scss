@@ -1,0 +1,5 @@
+@use '../../../../assets/styles/mixins.scss' as *;
+
+:host {
+  @include segmented;
+}

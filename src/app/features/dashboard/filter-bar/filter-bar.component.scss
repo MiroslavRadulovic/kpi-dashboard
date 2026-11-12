@@ -1,5 +1,6 @@
 @use '../../../../assets/styles/colors.scss' as *;
 @use '../../../../assets/styles/variables.scss' as *;
+@use '../../../../assets/styles/mixins.scss' as *;
 
 :host {
   display: flex;
@@ -32,32 +33,6 @@
   }
 
   .segmented {
-    display: inline-flex;
-    border: 1px solid $border;
-    border-radius: $radius-pill;
-    overflow: hidden;
-
-    button {
-      height: 36px;
-      padding: 0 16px;
-      border: none;
-      background: $surface;
-      color: $text;
-      cursor: pointer;
-
-      & + button {
-        border-left: 1px solid $border;
-      }
-
-      &.active {
-        background: $primary;
-        color: $surface;
-        font-weight: 600;
-      }
-
-      &:disabled {
-        cursor: not-allowed;
-      }
-    }
+    @include segmented;
   }
 }
