@@ -1,7 +1,11 @@
-<app-header />
+<app-header [menuOpen]="menuOpen()" [menuId]="menuId" (menuToggle)="toggleMenu()" />
 
 <div class="body">
-  <app-sidebar />
+  @if (isMobile() && menuOpen()) {
+    <div class="backdrop" aria-hidden="true" (click)="closeMenu()"></div>
+  }
+
+  <app-sidebar [id]="menuId" [open]="menuOpen()" [mobile]="isMobile()" />
 
   <main class="content">
     <router-outlet />

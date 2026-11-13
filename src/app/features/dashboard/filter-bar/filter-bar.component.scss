@@ -36,3 +36,30 @@
     @include segmented;
   }
 }
+
+@media (max-width: 720px) {
+  :host {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .filter {
+    flex: 1 1 160px;
+    min-width: 0;
+  }
+
+  select {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter {
+    flex-basis: 100%;
+  }
+
+  .segmented {
+    display: grid;
+  }
+}
