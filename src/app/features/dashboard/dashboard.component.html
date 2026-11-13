@@ -74,4 +74,14 @@
       }
     }
   </section>
+
+  <section class="card" aria-labelledby="table-heading">
+    <h2 id="table-heading">Measurements</h2>
+
+    @if (isLoading() || hasError() || isEmpty()) {
+      <ng-container [ngTemplateOutlet]="dataState" />
+    } @else {
+      <app-measurements-table [measurements]="measurements()" [kpis]="kpis()" />
+    }
+  </section>
 </div>
