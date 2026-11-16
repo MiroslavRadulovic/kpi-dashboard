@@ -1,35 +1,92 @@
 @use '../../../../assets/styles/colors.scss' as *;
 @use '../../../../assets/styles/variables.scss' as *;
 
-.topbar {
+:host {
   display: flex;
   align-items: center;
+  gap: 8px;
   height: 64px;
   padding: 0 20px;
   background: $surface;
   border-bottom: 1px solid $border-subtle;
   flex-shrink: 0;
+}
+
+.menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: -8px;
+  padding: 0;
+  border: none;
+  border-radius: $radius;
+  background: none;
+  color: $text;
+  cursor: pointer;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  &:hover {
+    background: $surface-muted;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $primary;
+    outline-offset: 2px;
+  }
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  font-size: 1.3rem;
+  color: $text;
+  text-decoration: none;
+
+  .brand-icon {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    fill: none;
+    stroke: $primary;
+    stroke-width: 2;
+    stroke-linecap: round;
+
+    circle {
+      fill: $primary;
+      stroke: none;
+    }
+  }
+
+  .brand-text {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: $mobile) {
+  :host {
+    height: 56px;
+    padding: 0 16px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
 
   .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.3rem;
-    color: $text;
-    text-decoration: none;
-
-    .brand-icon {
-      width: 26px;
-      height: 26px;
-      fill: none;
-      stroke: $primary;
-      stroke-width: 2;
-      stroke-linecap: round;
-
-      circle {
-        fill: $primary;
-        stroke: none;
-      }
-    }
+    font-size: 1.1rem;
   }
 }

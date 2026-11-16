@@ -18,6 +18,7 @@ import {
   selectDashboardLoading,
   selectFilters,
   selectKpiSummaries,
+  selectMeasurements,
   selectQualityByKpi,
   selectRegionAveragesByKpi,
   selectTrendByKpi,
@@ -31,6 +32,7 @@ import { KpiQualityChartComponent } from './charts/kpi-quality-chart/kpi-quality
 import { KpiRegionChartComponent } from './charts/kpi-region-chart/kpi-region-chart.component';
 import { KpiTrendChartComponent } from './charts/kpi-trend-chart/kpi-trend-chart.component';
 import { KpiSwitcherComponent } from './kpi-switcher/kpi-switcher.component';
+import { MeasurementsTableComponent } from './measurements-table/measurements-table.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -45,6 +47,7 @@ import { KpiSwitcherComponent } from './kpi-switcher/kpi-switcher.component';
     KpiRegionChartComponent,
     KpiTrendChartComponent,
     KpiSwitcherComponent,
+    MeasurementsTableComponent,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss',
@@ -64,6 +67,7 @@ export class DashboardComponent implements OnInit {
   private readonly trendByKpi = this.store.selectSignal(selectTrendByKpi);
   private readonly regionByKpi = this.store.selectSignal(selectRegionAveragesByKpi);
   private readonly qualityByKpi = this.store.selectSignal(selectQualityByKpi);
+  protected readonly measurements = this.store.selectSignal(selectMeasurements);
 
   protected readonly activeKpiId = linkedSignal<KpiId[], KpiId | null>({
     source: () => this.kpis().map((kpi: KpiDefinition) => kpi.id),

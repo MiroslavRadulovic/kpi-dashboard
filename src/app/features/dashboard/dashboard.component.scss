@@ -51,25 +51,6 @@
         font-size: 0.9rem;
         color: $text-muted;
       }
-
-      .switcher-button {
-        padding: 8px 16px;
-        border: 1px solid $border;
-        border-radius: $radius-pill;
-        background: $surface;
-        color: $text;
-        cursor: pointer;
-
-        &:hover {
-          border-color: $primary;
-        }
-
-        &.active {
-          border-color: $primary;
-          background: $primary-soft;
-          font-weight: 600;
-        }
-      }
     }
 
     .chart-grid {
@@ -99,7 +80,49 @@
 }
 
 @media (max-width: 900px) {
-  .chart-grid {
-    grid-template-columns: minmax(0, 1fr);
+  .page {
+    .card {
+      .chart-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .page {
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .page-header {
+    flex-wrap: wrap;
+
+    h1 {
+      font-size: 1.35rem;
+      overflow-wrap: anywhere;
+    }
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .switcher-row {
+    margin-top: 16px;
+  }
+
+  .chart {
+    padding: 12px 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 12px;
+  }
+
+  .page-header .btn {
+    width: 100%;
   }
 }

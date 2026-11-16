@@ -52,6 +52,11 @@ select {
   background: $primary;
   color: $surface;
 
+  &:hover {
+    background: $primary-hover;
+    transition: background 0.2s;
+  }
+
   &:disabled {
     background: $disabled-bg;
     color: $disabled-text;
@@ -64,8 +69,9 @@ select {
   color: $primary;
 
   &:hover:not(:disabled) {
-    background: $primary;
+    background: $primary-hover;
     color: $surface;
+    border-color: $primary-hover;
     transition: all 0.3s;
   }
 }

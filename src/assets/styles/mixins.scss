@@ -50,7 +50,7 @@
     box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
     transform: translateX(calc(var(--seg-index, 0) * 100%));
     transition:
-      transform 300ms $seg-ease,
+      transform 300ms $ease,
       opacity 200ms ease;
   }
 
@@ -74,7 +74,7 @@
     text-overflow: ellipsis;
     cursor: pointer;
     transition:
-      color 300ms $seg-ease,
+      color 300ms $ease,
       background-color 150ms ease;
 
     &:focus-visible {

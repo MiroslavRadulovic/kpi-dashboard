@@ -1,4 +1,4 @@
-<nav class="sidebar" aria-label="Main">
+<nav aria-label="Main">
   @for (item of navItems(); track item.id) {
     <a
       class="nav-item"
@@ -16,5 +16,9 @@
 
       {{ item.label }}
     </a>
+  }
+
+  @if (mobile() && !canOpenDashboard()) {
+    <p class="nav-hint">{{ dashboardDisabledHint }}</p>
   }
 </nav>

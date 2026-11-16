@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { MIN_SELECTED_KPIS } from '@core/constants/kpis.const';
@@ -12,10 +12,17 @@ import { SidebarItems } from '@core/enums/sidebar-items.enum';
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
+  host: {
+    '[class.open]': 'open()',
+    '[attr.inert]': "mobile() && !open() ? '' : null",
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent {
   private readonly store = inject(Store);
+
+  readonly open = input(false);
+  readonly mobile = input(false);
 
   protected readonly canOpenDashboard = this.store.selectSignal(selectCanOpenDashboard);
 

@@ -1,9 +1,24 @@
-<header class="topbar">
-  <a class="brand" routerLink="/">
-    <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0" />
-      <circle cx="12" cy="19" r="1.5" />
-    </svg>
-    Network KPI Dashboard
-  </a>
-</header>
+<button
+  type="button"
+  class="menu-toggle"
+  [attr.aria-controls]="menuId()"
+  [attr.aria-expanded]="menuOpen()"
+  [attr.aria-label]="menuOpen() ? 'Close menu' : 'Open menu'"
+  (click)="menuToggle.emit()"
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    @if (menuOpen()) {
+      <path d="M6 6l12 12M18 6L6 18" />
+    } @else {
+      <path d="M4 7h16M4 12h16M4 17h16" />
+    }
+  </svg>
+</button>
+
+<a class="brand" routerLink="/">
+  <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M2 8.5a15 15 0 0 1 20 0M5 12a10 10 0 0 1 14 0M8.5 15.5a5 5 0 0 1 7 0" />
+    <circle cx="12" cy="19" r="1.5" />
+  </svg>
+  <span class="brand-text">Network KPI Dashboard</span>
+</a>
